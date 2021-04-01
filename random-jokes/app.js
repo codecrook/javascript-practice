@@ -15,6 +15,9 @@
         setupDiv.innerHTML = joke[0].setup;
         punchline = joke[0].punchline;
 
+        punchlineDiv.innerHTML = "";
+        punchlineDiv.classList.remove('bubble');
+
         punchlineBtn.classList.toggle('hidden');
         newJokeBtn.classList.toggle('hidden');
     };
@@ -22,10 +25,12 @@
     const getPunchline = () => {
         punchlineDiv.innerHTML = punchline;
         punchlineDiv.classList.add('bubble');
+
         punchlineBtn.classList.toggle('hidden');
         newJokeBtn.classList.toggle('hidden');
     };
 
     punchlineBtn.addEventListener('click', getPunchline);
+    newJokeBtn.addEventListener('click', getJoke.bind(null, [URL]));
     getJoke(URL);
 }
