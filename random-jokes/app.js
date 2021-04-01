@@ -9,17 +9,27 @@
     let punchline = '';
 
     const getJoke = async (url) => {
-        const jokePromise = await fetch(url);
-        const joke = await jokePromise.json();
+        try {
+            const jokePromise = await fetch(url);
+            if (jokePromise.ok) {
+                const joke = await jokePromise.json();
 
-        setupDiv.innerHTML = joke[0].setup;
-        punchline = joke[0].punchline;
+                setupDiv.innerHTML = joke[0].setup;
+                punchline = joke[0].punchline;
 
-        punchlineDiv.innerHTML = "";
-        punchlineDiv.classList.remove('bubble');
+                punchlineDiv.innerHTML = "";
+                punchlineDiv.classList.remove('bubble');
 
-        punchlineBtn.classList.toggle('hidden');
-        newJokeBtn.classList.toggle('hidden');
+                punchlineBtn.classList.toggle('hidden');
+                newJokeBtn.classList.toggle('hidden');
+            } else {
+                throw new Error(jokePromise.status);
+            }
+        } catch (e) {
+            console.error(e);
+            setupDiv.innerHTML = 'Problem getting joke. Please try again!';
+            newJokeBtn.classList.remove('hidden');
+        }
     };
 
     const getPunchline = () => {
