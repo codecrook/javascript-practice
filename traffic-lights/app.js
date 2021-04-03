@@ -1,4 +1,4 @@
-const lights = document.querySelectorAll('.circles');
+const lights = document.querySelectorAll('.circle');
 let active = 0;
 
 const switchLight = (currentLight) => {
@@ -9,7 +9,15 @@ const turnOffLight = (currentLight) => {
     currentLight.className = 'circle';
 };
 
-const changeLight = () => new Promise((res, rej) => { });
+const changeLight = () => new Promise((res, rej) => {
+    let currentLight = lights[active];
+    switchLight(currentLight);
+    setTimeout(() => {
+        turnOffLight(currentLight);
+        active += active === 2 ? -2 : 1;
+        res(active);
+    }, 2000);
+});
 
 (async () => {
     try {
@@ -19,4 +27,4 @@ const changeLight = () => new Promise((res, rej) => { });
     } catch (err) {
         console.log(err);
     }
-});
+})();
