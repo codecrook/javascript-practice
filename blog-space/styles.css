@@ -33,3 +33,19 @@ article{
 article > p {
     padding: 5px;
 }
+
+form {
+    padding: 60px 10px 10px;
+    display: grid;
+    background-color: lightblue;
+}
+
+input#post-title, textarea#post-body {
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
