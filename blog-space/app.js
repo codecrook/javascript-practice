@@ -16,4 +16,13 @@
 
             document.getElementById('atricles').innerHTML = html;
         });
+
+    document.getElementById('new-blog').addEventListener('submit', e => {
+        e.preventDefault();
+        const postTitle = document.getElementById('post-title').value;
+        const postBody = document.getElementById('post-body').value;
+        const data = { title: postTitle, body: postBody };
+
+        console.log(data);
+    });
 }
